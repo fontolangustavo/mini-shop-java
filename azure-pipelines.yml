@@ -1,0 +1,25 @@
+trigger:
+  - main
+  
+pool: ISPPAP20-Agents
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    goals: 'package'
+  displayName: 'Build with Maven'
+
+- task: PublishTestResults@2
+  displayName: "Publish test results"
+  inputs:
+    testResultsFormat: "JUnit"
+
+- task: PublishCodeCoverageResults@1
+  displayName: "Publish code coverage"
+  inputs:
+    summaryFileLocation: $(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml
+    pathToSources: $(System.DefaultWorkingDirectory)/src/main/java/
