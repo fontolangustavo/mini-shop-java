@@ -1,4 +1,4 @@
-package br.com.iteris.universidade.minishop;
+package br.com.iteris.itc.minishop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

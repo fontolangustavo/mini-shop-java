@@ -34,12 +34,14 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
+
 		<!-- MS SQL -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<!--        Por padrão escolhemos utilizar o MSSQL. Caso opte por usar o Oracle, basta descomentar a dependência abaixo e comentar a de cima. -->
 		<!--		Oracle -->
 		<!--		<dependency>-->
@@ -47,9 +49,12 @@
 		<!--			<artifactId>ojdbc8</artifactId>-->
 		<!--			<scope>runtime</scope>-->
 		<!--		</dependency>-->
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.18.26</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -67,7 +72,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.3</version>
+				<version>0.8.10</version>
 				<executions>
 					<execution>
 						<id>coverage-initialize</id>
