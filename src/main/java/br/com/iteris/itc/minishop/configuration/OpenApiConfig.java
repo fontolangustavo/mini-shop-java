@@ -22,7 +22,6 @@ public class OpenApiConfig {
                        .description("Iteris Trainning Center - Spring Boot MiniShop")
                        .version("1.0.0")
                        .termsOfService("Disponível para desafios")
-                       .license(new License().name("").url(""))
                        .contact(new Contact()
                                .name("Iteris Trainning Center")
                                .email("equipe.itc@iteris.com.br")
