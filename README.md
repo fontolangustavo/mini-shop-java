@@ -58,7 +58,7 @@ Passos para executar o docker:
     <br />
 
     ```bash
-    wsl docker exec -it database_minishop /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Cpc33UBI' -Q 'CREATE DATABASE minishop'
+    wsl docker compose exec -it <nome_service_compose> /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Cpc33UBI' -Q 'CREATE DATABASE minishop'
     ```
 
     - Linux/Mac OS com SQL Server:

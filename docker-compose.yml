@@ -9,7 +9,6 @@ services:
       - "1433:1433"
     volumes:
       - sqlserver:/var/opt/mssql
-    container_name: database_minishop
 
 volumes:
   sqlserver:
