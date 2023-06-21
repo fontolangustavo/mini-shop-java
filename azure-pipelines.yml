@@ -6,7 +6,7 @@ pool: ISPPAP20-Agents
 steps:
 - task: Maven@4
   inputs:
-    javaHomeOption: JAVA_HOME_17_X64
+    javaHomeOption: '/usr/lib/jvm/java-17-openjdk-amd64'
     codeCoverageToolOption: 'JaCoCo'
     codeCoverageSourceDirectories: $(System.DefaultWorkingDirectory)/src/main/java/
   displayName: 'Build with Maven'
