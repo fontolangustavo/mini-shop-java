@@ -4,9 +4,15 @@ trigger:
 pool: ISPPAP20-Agents
 
 steps:
+- script: |
+    wget -qO- https://dlcdn.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz | tar xvz -C /opt/
+  displayName: 'Use Maven 3.8'
+
 - task: Maven@4
   inputs:
     jdkVersionOption: '1.17'
+    mavenVersionOption: 'Path'
+    mavenDirectory: '/opt/apache-maven-3.8.8'
     codeCoverageToolOption: 'JaCoCo'
     codeCoverageSourceDirectories: $(System.DefaultWorkingDirectory)/src/main/java/
   displayName: 'Build with Maven'
