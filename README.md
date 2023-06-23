@@ -116,7 +116,10 @@ Para versionar nosso banco de dados estamos utilizando migrations através do [l
 
 ## Testes
 
-Por padrão os testes estão configurados para serem executados sem conexão ao banco. Ou seja, o foco é criar testes unitários para cada serviço.
+Os testes estão configurados para serem executados com conexão ao banco utilizando H2 - banco em memória.
+O foco é criar testes unitários para cada serviço.
+
+> **Documentação:** Leia mais sobre [aqui](https://www.baeldung.com/spring-testing-separate-data-source).
 
 ## Documentação Api
 
