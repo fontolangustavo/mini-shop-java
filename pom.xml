@@ -117,7 +117,7 @@
 								<rule>
 									<element>PACKAGE</element>
 									<excludes>
-										<exclude>**/configuration/*</exclude>
+										<exclude>br.com.iteris.itc.minishop.configuration/**/*</exclude>
 									</excludes>
 									<limits>
 										<limit>
