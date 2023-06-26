@@ -125,7 +125,7 @@
 								</rule>
 							</rules>
 							<excludes>
-								<exclude>br.com.iteris.itc.minishop.configuration*</exclude>
+								<exclude>**/configuration/*.class</exclude>
 							</excludes>
 						</configuration>
 					</execution>
