@@ -116,6 +116,9 @@
 							<rules>
 								<rule>
 									<element>PACKAGE</element>
+									<excludes>
+										<exclude>**/configuration/*</exclude>
+									</excludes>
 									<limits>
 										<limit>
 											<counter>LINE</counter>
@@ -124,9 +127,6 @@
 									</limits>
 								</rule>
 							</rules>
-							<excludes>
-								<exclude>**/configuration/*</exclude>
-							</excludes>
 						</configuration>
 					</execution>
 				</executions>
