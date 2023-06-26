@@ -125,7 +125,7 @@
 								</rule>
 							</rules>
 							<excludes>
-								<exclude>**/configuration/*.class</exclude>
+								<exclude>**/configuration/*</exclude>
 							</excludes>
 						</configuration>
 					</execution>
