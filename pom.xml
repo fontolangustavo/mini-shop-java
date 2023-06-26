@@ -113,12 +113,12 @@
 							<goal>check</goal>
 						</goals>
 						<configuration>
+							<excludes>
+								<exclude>**/configuration/*</exclude>
+							</excludes>
 							<rules>
 								<rule>
 									<element>PACKAGE</element>
-									<excludes>
-										<exclude>br.com.iteris.itc.minishop.configuration/**/*</exclude>
-									</excludes>
 									<limits>
 										<limit>
 											<counter>LINE</counter>
