@@ -92,6 +92,12 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.10</version>
+				<configuration>
+					<excludes>
+						<exclude>br/com/iteris/itc/minishop/configuration/*.class</exclude>
+						<exclude>br/com/iteris/itc/minishop/MinishopApplication.class</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>coverage-initialize</id>
@@ -113,9 +119,6 @@
 							<goal>check</goal>
 						</goals>
 						<configuration>
-							<excludes>
-								<exclude>**/configuration/*</exclude>
-							</excludes>
 							<rules>
 								<rule>
 									<element>PACKAGE</element>
