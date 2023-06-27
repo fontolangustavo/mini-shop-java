@@ -116,10 +116,10 @@ Para versionar nosso banco de dados estamos utilizando migrations através do [l
 
 ## Testes
 
-Os testes estão configurados para serem executados com conexão ao banco utilizando H2 - banco em memória.
-O foco é criar testes unitários para cada serviço.
+Para os Testes Unitários utilizamos a annotation @RunWith(MockitoExtension.class) indicando que os testes são realizados sem integrações externas.
+Para os Testes de Integração utilizamos as annotations @SpringBootTest e @ActiveProfiles indicando que  os testes não possuem mocking e apontam para o profile 'test'.
 
-> **Documentação:** Leia mais sobre [aqui](https://www.baeldung.com/spring-testing-separate-data-source).
+> **Documentação:** Leia mais sobre [aqui](https://www.baeldung.com/spring-boot-testing).
 
 ## Documentação Api
 
