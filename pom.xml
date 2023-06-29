@@ -8,7 +8,7 @@
 		<version>3.0.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.iteris.universidade</groupId>
+	<groupId>br.com.iteris.itc.minishop</groupId>
 	<artifactId>minishop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>minishop</name>
@@ -71,6 +71,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -83,6 +93,12 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.10</version>
+				<configuration>
+					<excludes>
+						<exclude>br/com/iteris/itc/minishop/configuration/*.class</exclude>
+						<exclude>br/com/iteris/itc/minishop/MinishopApplication.class</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>coverage-initialize</id>

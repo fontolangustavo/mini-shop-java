@@ -4,22 +4,15 @@ trigger:
 pool: ISPPAP20-Agents
 
 steps:
-- task: Maven@3
+- script: |
+    wget -qO- https://dlcdn.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz | tar xvz -C /opt/
+  displayName: 'Use Maven 3.8'
+
+- task: Maven@4
   inputs:
-    mavenPomFile: 'pom.xml'
-    javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.17'
-    jdkArchitectureOption: 'x64'
-    goals: 'package'
+    mavenVersionOption: 'Path'
+    mavenDirectory: '/opt/apache-maven-3.8.8'
+    codeCoverageToolOption: 'JaCoCo'
+    codeCoverageSourceDirectories: $(System.DefaultWorkingDirectory)/src/main/java/
   displayName: 'Build with Maven'
-
-- task: PublishTestResults@2
-  displayName: "Publish test results"
-  inputs:
-    testResultsFormat: "JUnit"
-
-- task: PublishCodeCoverageResults@1
-  displayName: "Publish code coverage"
-  inputs:
-    summaryFileLocation: $(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml
-    pathToSources: $(System.DefaultWorkingDirectory)/src/main/java/

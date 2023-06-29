@@ -5,7 +5,7 @@ Projeto MiniShop utilizando Spring Boot versão 3.0.7 e Java 17 com as bibliotec
 ## Pré-requisitos
 
 1. Docker;
-2. Java 11;
+2. Java 17;
 3. SQL Server Management Studio (MSSQL) ou SQL Developer (Oracle), DBeaver e outros navegadores de banco de dados são suportados também;
 4. Intellij como editor de texto.
 
@@ -66,7 +66,7 @@ Passos para executar o docker:
     <br />
 
     ```bash
-    docker exec -it database_minishop /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Cpc33UBI' -Q 'CREATE DATABASE minishop'
+    docker compose exec -it <nome_service_compose> /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Cpc33UBI' -Q 'CREATE DATABASE minishop'
     ```
 
 > **Considerações:** Algumas considerações sobre docker com banco de dados:
@@ -116,7 +116,10 @@ Para versionar nosso banco de dados estamos utilizando migrations através do [l
 
 ## Testes
 
-Por padrão os testes estão configurados para serem executados sem conexão ao banco. Ou seja, o foco é criar testes unitários para cada serviço.
+Para os Testes Unitários utilizamos a annotation @RunWith(MockitoExtension.class) indicando que os testes são realizados sem integrações externas.
+Para os Testes de Integração utilizamos as annotations @SpringBootTest e @ActiveProfiles indicando que  os testes não possuem mocking e apontam para o profile 'test'.
+
+> **Documentação:** Leia mais sobre [aqui](https://www.baeldung.com/spring-boot-testing).
 
 ## Documentação Api
 

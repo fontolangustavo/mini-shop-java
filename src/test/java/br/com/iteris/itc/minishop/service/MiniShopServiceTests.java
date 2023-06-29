@@ -1,6 +1,5 @@
-package br.com.iteris.itc.minishop.serviceTest;
+package br.com.iteris.itc.minishop.service;
 
-import br.com.iteris.itc.minishop.service.MiniShopService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
