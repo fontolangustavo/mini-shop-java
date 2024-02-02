@@ -1,6 +1,6 @@
 ## Introdução
 
-Projeto MiniShop utilizando Spring Boot versão 3.0.7 e Java 17 com as bibliotecas Validation, Lombok, Data JPA, Liquibase, MSSQL ou Oracle.
+Projeto MiniShop utilizando Spring Boot versão 3.0.7 e Java 17 com as bibliotecas Validation, Lombok, Data JPA, Flyway, MSSQL ou Oracle.
 
 ## Pré-requisitos
 
@@ -112,7 +112,7 @@ Passos para executar o docker:
 
 Para versionar nosso banco de dados estamos utilizando migrations através do [liquibase](https://www.liquibase.org/), mais informações nesse [tutorial](https://www.baeldung.com/liquibase-refactor-schema-of-java-app).
 
-> **Importante:** O projeto ja está preparado para receber as migrations basta configurá-las no arquivo [liquibase-changelog.xml](./src/main/resources/db/liquibase-changelog.xml)
+> **Importante:** O projeto ja está preparado para receber as migrations basta configurá-las na pasta (src/main/resources/db/migration)
 
 ## Testes
 
