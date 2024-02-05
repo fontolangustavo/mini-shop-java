@@ -31,10 +31,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.1.0</version>
@@ -51,15 +47,6 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-		<!--        Por padrão escolhemos utilizar o MSSQL. Caso opte por usar o Oracle, basta descomentar a dependência abaixo e comentar a de cima. -->
-		<!--		Oracle -->
-		<!--		<dependency>-->
-		<!--			<groupId>com.oracle.database.jdbc</groupId>-->
-		<!--			<artifactId>ojdbc8</artifactId>-->
-		<!--			<scope>runtime</scope>-->
-		<!--		</dependency>-->
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -75,6 +62,14 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-sqlserver</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
