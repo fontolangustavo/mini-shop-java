@@ -110,7 +110,7 @@ Passos para executar o docker:
 
 ## Migrations
 
-Para versionar nosso banco de dados estamos utilizando migrations através do [liquibase](https://www.liquibase.org/), mais informações nesse [tutorial](https://www.baeldung.com/liquibase-refactor-schema-of-java-app).
+Para versionar nosso banco de dados estamos utilizando migrations através do [Flyway](https://flywaydb.org/), mais informações nesse [tutorial](https://www.baeldung.com/database-migrations-with-flyway).
 
 > **Importante:** O projeto ja está preparado para receber as migrations basta configurá-las na pasta (src/main/resources/db/migration)
 
