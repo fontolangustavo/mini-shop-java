@@ -1,6 +1,6 @@
 ## Introdução
 
-Projeto MiniShop utilizando Spring Boot versão 3.0.7 e Java 17 com as bibliotecas Validation, Lombok, Data JPA, Flyway, MSSQL ou Oracle.
+Projeto MiniShop utilizando Spring Boot versão 3.0.7 e Java 17 com Clean Architecture com as bibliotecas Validation, Lombok, Data JPA, Flyway, MSSQL ou Oracle.
 
 ## Pré-requisitos
 
@@ -128,6 +128,12 @@ Para acessar o swagger: <http://localhost:8080/swagger-ui/index.html>
 > **Considerações:** Para configuração do Swagger foi utilizada biblioteca SpringDoc com utilização Open API.
 > 
 > **Documentação:** Leia mais [aqui](https://springdoc.org/).
+
+## Arquitetura da Api
+
+O modelo da API foi desenvolvido baseado na Clean Architecture (Arquitetura Limpa).
+
+> **Documentação:** Leia mais sobre Clean Architecture[aqui](https://medium.com/luizalabs/descomplicando-a-clean-architecture-cf4dfc4a1ac6).
 
 ## Logs
 

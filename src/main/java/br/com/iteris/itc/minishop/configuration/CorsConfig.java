@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @Profile({ "local", "dev"})
 public class CorsConfig {
-
     @Bean
     public WebMvcConfigurer corsConfigurer (){
         return new WebMvcConfigurer() {
@@ -24,5 +23,4 @@ public class CorsConfig {
             }
         };
     }
-
 }

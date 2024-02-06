@@ -15,18 +15,18 @@ import org.springframework.context.annotation.Profile;
 public class OpenApiConfig {
 
     @Bean
-   public OpenAPI customOpenApi() {
-       return new OpenAPI()
-               .info(new Info()
-                       .title("MiniShop")
-                       .description("Iteris Trainning Center - Spring Boot MiniShop")
-                       .version("1.0.0")
-                       .termsOfService("Disponível para desafios")
-                       .contact(new Contact()
-                               .name("Iteris Trainning Center")
-                               .email("equipe.itc@iteris.com.br")
-                               .url("equipe.itc@iteris.com.br")));
+    public OpenAPI customOpenApi() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("iShop Delivery")
+                        .description("Iteris Trainning Center - Spring Boot MiniShop with Clean Architecture and Payment Integration")
+                        .version("1.0.0")
+                        .termsOfService("Disponível para desafios")
+                        .contact(new Contact()
+                                .name("Gustavo Fontolan - GFO")
+                                .email("gustavo.fontolan@iteris.com.br")
+                                .url("equipe.itc@iteris.com.br")));
 
-   }
+    }
 
 }
