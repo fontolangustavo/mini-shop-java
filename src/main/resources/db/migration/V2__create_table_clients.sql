@@ -1,5 +1,5 @@
 CREATE TABLE clients (
-    id BIGINT PRIMARY KEY,
+    id UniqueIdentifier  PRIMARY KEY default newid(),
     first_name VARCHAR(100),
     last_name VARCHAR(100),
     cpf VARCHAR(11),
