@@ -1,5 +1,5 @@
 CREATE TABLE suppliers (
-    id BIGINT PRIMARY KEY,
+    id UniqueIdentifier  PRIMARY KEY default newid(),
     name VARCHAR(100),
     cnpj VARCHAR(14),
     city VARCHAR(100),
@@ -10,11 +10,11 @@ CREATE TABLE suppliers (
 );
 
 CREATE TABLE products (
-  id BIGINT PRIMARY KEY,
-  supplier_id BIGINT,
-  name VARCHAR(100),
-  price DECIMAL(6, 2),
-  is_discontinued BIT,
+    id UniqueIdentifier  PRIMARY KEY default newid(),
+    supplier_id UniqueIdentifier,
+    name VARCHAR(100),
+    price DECIMAL(6, 2),
+    is_discontinued BIT,
 
   FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
 );

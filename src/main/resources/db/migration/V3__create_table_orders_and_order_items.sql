@@ -1,6 +1,6 @@
 CREATE TABLE orders (
-    id BIGINT PRIMARY KEY,
-    customer_id BIGINT,
+    id UniqueIdentifier PRIMARY KEY default newid(),
+    customer_id UniqueIdentifier,
     amount DECIMAL(6, 2),
     created_at DATETIME,
 
@@ -8,9 +8,9 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_items (
-    id BIGINT PRIMARY KEY,
-    order_id BIGINT,
-    product_id BIGINT,
+    id UniqueIdentifier PRIMARY KEY default newid(),
+    order_id UniqueIdentifier,
+    product_id UniqueIdentifier,
     quantity INT,
     price DECIMAL(6, 2),
 
