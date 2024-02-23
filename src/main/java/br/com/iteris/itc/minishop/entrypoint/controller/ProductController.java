@@ -1,5 +1,7 @@
 package br.com.iteris.itc.minishop.entrypoint.controller;
 
+import br.com.iteris.itc.minishop.core.dataprovider.FindProductById;
+import br.com.iteris.itc.minishop.core.usecase.FindProductByIdUseCase;
 import br.com.iteris.itc.minishop.core.usecase.GetAllProductUseCase;
 import br.com.iteris.itc.minishop.entrypoint.controller.mapper.ProductMapper;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.ProductResponse;
@@ -19,6 +21,9 @@ public class ProductController {
     private GetAllProductUseCase getAllProductUseCase;
 
     @Autowired
+    private FindProductByIdUseCase findProductByIdUseCase;
+
+    @Autowired
     private ProductMapper productMapper;
 
     @GetMapping
@@ -31,4 +36,14 @@ public class ProductController {
 
         return ResponseEntity.ok().body(response);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> show(@PathVariable String id) {
+        var product = findProductByIdUseCase.find(id);
+
+        var response = productMapper.toProductResponse(product);
+
+        return ResponseEntity.ok().body(response);
+    }
+
 }

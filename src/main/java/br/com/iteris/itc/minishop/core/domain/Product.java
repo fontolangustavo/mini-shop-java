@@ -8,6 +8,7 @@ public class Product {
   private String name;
   private BigDecimal price;
   private boolean isDiscontinued;
+  private Supplier supplier;
 
   public Product() {
   }
@@ -22,6 +23,14 @@ public class Product {
     this.name = name;
     this.price = price;
     this.isDiscontinued = isDiscontinued;
+  }
+
+  public Product(UUID id, String name, BigDecimal price, boolean isDiscontinued, Supplier supplier) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.isDiscontinued = isDiscontinued;
+    this.supplier = supplier;
   }
 
   public UUID getId() {
@@ -56,6 +65,14 @@ public class Product {
     isDiscontinued = discontinued;
   }
 
+  public Supplier getSupplier() {
+    return supplier;
+  }
+
+  public void setSupplier(Supplier supplier) {
+    this.supplier = supplier;
+  }
+
   @Override
   public String toString() {
     return "Product{" +
@@ -63,6 +80,7 @@ public class Product {
             ", name='" + name + '\'' +
             ", price=" + price +
             ", isDiscontinued=" + isDiscontinued +
+            ", supplier=" + supplier +
             '}';
   }
 }

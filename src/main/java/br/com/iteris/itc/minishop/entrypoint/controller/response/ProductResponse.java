@@ -13,4 +13,5 @@ public class ProductResponse {
     private String name;
     private BigDecimal price;
     private boolean isDiscontinued;
+    private SupplierResponse supplierResponse;
 }
