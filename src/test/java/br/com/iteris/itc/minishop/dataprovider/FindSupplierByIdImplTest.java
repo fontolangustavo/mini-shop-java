@@ -1,15 +1,9 @@
 package br.com.iteris.itc.minishop.dataprovider;
 
-import br.com.iteris.itc.minishop.core.domain.Product;
 import br.com.iteris.itc.minishop.core.domain.Supplier;
-import br.com.iteris.itc.minishop.core.exceptions.NotFoundException;
-import br.com.iteris.itc.minishop.dataprovider.repository.ProductRepository;
 import br.com.iteris.itc.minishop.dataprovider.repository.SupplierRepository;
-import br.com.iteris.itc.minishop.dataprovider.repository.entity.ProductEntity;
 import br.com.iteris.itc.minishop.dataprovider.repository.entity.SupplierEntity;
-import br.com.iteris.itc.minishop.dataprovider.repository.mapper.ProductEntityMapper;
 import br.com.iteris.itc.minishop.dataprovider.repository.mapper.SupplierEntityMapper;
-import org.hibernate.validator.internal.metadata.raw.BeanConfiguration;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -18,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.BeanUtils;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,7 +43,8 @@ public class FindSupplierByIdImplTest {
                 "any_uf",
                 "any_phone",
                 "any_email",
-                "any_contact"
+                "any_contact",
+                null
         );
 
         Supplier supplier = new Supplier();

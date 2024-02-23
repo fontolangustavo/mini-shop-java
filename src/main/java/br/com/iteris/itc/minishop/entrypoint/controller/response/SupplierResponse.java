@@ -1,13 +1,10 @@
 package br.com.iteris.itc.minishop.entrypoint.controller.response;
 
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.util.UUID;
-
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class SupplierResponse {
     private UUID id;

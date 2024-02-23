@@ -2,12 +2,10 @@ package br.com.iteris.itc.minishop.dataprovider;
 
 import br.com.iteris.itc.minishop.core.domain.Product;
 import br.com.iteris.itc.minishop.core.domain.Supplier;
-import br.com.iteris.itc.minishop.core.exceptions.NotFoundException;
 import br.com.iteris.itc.minishop.dataprovider.repository.ProductRepository;
 import br.com.iteris.itc.minishop.dataprovider.repository.entity.ProductEntity;
 import br.com.iteris.itc.minishop.dataprovider.repository.entity.SupplierEntity;
 import br.com.iteris.itc.minishop.dataprovider.repository.mapper.ProductEntityMapper;
-import br.com.iteris.itc.minishop.dataprovider.repository.mapper.SupplierEntityMapper;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -46,11 +44,11 @@ public class FindProductByIdImplTest {
                 new Supplier()));
         when(productRepository.findById(any(UUID.class))).thenReturn(Optional.of(mockProduct));
 
-        Product response = findProductById.find(productIdString);
+        Optional<Product> response = findProductById.find(productIdString);
 
         assertAll("should return product on success",
-                () -> assertNotNull(response),
-                () -> assertEquals(mockProduct.getName(), response.getName()),
+                () -> assertTrue(response.isPresent()),
+                () -> assertEquals(mockProduct.getName(), response.get().getName()),
                 () -> verify(mockProductEntityMapper, times(1)).toProduct(mockProduct)
         );
     }
@@ -58,10 +56,16 @@ public class FindProductByIdImplTest {
     @Test
     @DisplayName("should throw when id is illegal")
     public void testShouldThrowWhenIdIsIllegal() {
-        String productId = "illegal_id";
+        UUID productId = UUID.randomUUID();
+        String productIdString = productId.toString();
+
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+
+        Optional<Product> response = findProductById.find(productIdString);
 
         //Asserts
-        assertThrows(IllegalArgumentException.class, () -> productRepository.findById(UUID.fromString(productId)));
+        assertTrue(response.isEmpty());
     }
     @Test
     @DisplayName("should throw when product not found")
@@ -69,9 +73,11 @@ public class FindProductByIdImplTest {
         UUID productId = UUID.randomUUID();
         String productIdString = productId.toString();
 
-        when(productRepository.findById(productId)).thenThrow(new NotFoundException());
+        when(productRepository.findById(productId)).thenReturn(Optional.empty());
+
+        Optional<Product> response = findProductById.find(productIdString);
 
         //Asserts
-        assertThrows(NotFoundException.class, () -> findProductById.find(productIdString));
+        assertTrue(response.isEmpty());
     }
 }

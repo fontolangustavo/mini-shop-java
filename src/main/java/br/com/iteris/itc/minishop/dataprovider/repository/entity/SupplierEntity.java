@@ -1,13 +1,12 @@
 package br.com.iteris.itc.minishop.dataprovider.repository.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -30,4 +29,7 @@ public class SupplierEntity {
     @NotNull
     private String email;
     private String contact;
+    @OneToMany
+    @JoinColumn(name = "supplier_id")
+    private List<ProductEntity> products;
 }

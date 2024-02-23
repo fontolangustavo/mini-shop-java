@@ -4,46 +4,37 @@ import br.com.iteris.itc.minishop.core.domain.Product;
 import br.com.iteris.itc.minishop.core.domain.Supplier;
 import br.com.iteris.itc.minishop.dataprovider.repository.entity.ProductEntity;
 import br.com.iteris.itc.minishop.dataprovider.repository.entity.SupplierEntity;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 @Component
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProductEntityMapper {
-    @Autowired
-    private SupplierEntityMapper supplierEntityMapper;
-
     public ProductEntity toProductEntity(Product product) {
         ProductEntity productEntity = new ProductEntity();
 
-        productEntity.setId(product.getId());
-        productEntity.setName(product.getName());
-        productEntity.setPrice(product.getPrice());
-        productEntity.setDiscontinued(product.isDiscontinued());
+        BeanUtils.copyProperties(product, productEntity);
 
         if (product.getSupplier() != null ){
-            SupplierEntity supplierEntity = supplierEntityMapper.toSupplierEntity(product.getSupplier());
+            SupplierEntity supplierEntity = new SupplierEntity();
+            BeanUtils.copyProperties(product.getSupplier(), supplierEntity);
+
             productEntity.setSupplier(supplierEntity);
         }
 
         return productEntity;
     }
 
-
     public Product toProduct(ProductEntity productEntity) {
         Product product = new Product();
 
-        product.setId(productEntity.getId());
-        product.setName(productEntity.getName());
-        product.setPrice(productEntity.getPrice());
-        product.setDiscontinued(productEntity.isDiscontinued());
+        BeanUtils.copyProperties(productEntity, product);
 
         if (productEntity.getSupplier() != null ){
-            Supplier supplierEntity = supplierEntityMapper.toSupplier(productEntity.getSupplier());
-            product.setSupplier(supplierEntity);
+            Supplier supplier = new Supplier();
+
+            BeanUtils.copyProperties(productEntity.getSupplier(), supplier);
+
+            product.setSupplier(supplier);
         }
 
         return product;
