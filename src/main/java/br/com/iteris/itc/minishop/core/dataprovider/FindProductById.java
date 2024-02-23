@@ -2,6 +2,8 @@ package br.com.iteris.itc.minishop.core.dataprovider;
 
 import br.com.iteris.itc.minishop.core.domain.Product;
 
+import java.util.Optional;
+
 public interface FindProductById {
-    Product find(final String id);
+    Optional<Product> find(final String id);
 }
