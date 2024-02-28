@@ -1,4 +1,4 @@
-CREATE TABLE clients (
+CREATE TABLE customers (
     id UniqueIdentifier  PRIMARY KEY default newid(),
     first_name VARCHAR(100),
     last_name VARCHAR(100),
