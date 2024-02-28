@@ -1,6 +1,6 @@
 package br.com.iteris.itc.minishop.core.domain;
 
-import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 public class Supplier {
@@ -12,8 +12,20 @@ public class Supplier {
     private String phone;
     private String email;
     private String contact;
+    private List<Product> products;
 
     public Supplier() {
+    }
+
+    public Supplier(UUID id, String name, String cnpj, String city, String uf, String phone, String email, String contact) {
+        this.id = id;
+        this.name = name;
+        this.cnpj = cnpj;
+        this.city = city;
+        this.uf = uf;
+        this.phone = phone;
+        this.email = email;
+        this.contact = contact;
     }
 
     public Supplier(String name, String cnpj, String city, String uf, String phone, String email, String contact) {
@@ -26,7 +38,7 @@ public class Supplier {
         this.contact = contact;
     }
 
-    public Supplier(UUID id, String name, String cnpj, String city, String uf, String phone, String email, String contact) {
+    public Supplier(UUID id, String name, String cnpj, String city, String uf, String phone, String email, String contact, List<Product> products) {
         this.id = id;
         this.name = name;
         this.cnpj = cnpj;
@@ -35,6 +47,7 @@ public class Supplier {
         this.phone = phone;
         this.email = email;
         this.contact = contact;
+        this.products = products;
     }
 
     public UUID getId() {
@@ -101,6 +114,14 @@ public class Supplier {
         this.contact = contact;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "Supplier{" +
@@ -112,6 +133,7 @@ public class Supplier {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

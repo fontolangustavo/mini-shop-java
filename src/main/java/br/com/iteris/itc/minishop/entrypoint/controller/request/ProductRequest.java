@@ -11,4 +11,6 @@ public class ProductRequest {
     private String name;
     @NotBlank
     private BigDecimal price;
+    @NotBlank
+    private String supplierId;
 }
