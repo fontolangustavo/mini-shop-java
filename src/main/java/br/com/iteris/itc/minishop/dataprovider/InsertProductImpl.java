@@ -16,36 +16,15 @@ import java.util.Optional;
 
 @Component
 public class InsertProductImpl implements InsertProduct {
-
     @Autowired
     private ProductRepository productRepository;
 
     @Autowired
-    private FindSupplierById findSupplierById;
-
-    @Autowired
     private ProductEntityMapper productEntityMapper;
-    @Autowired
-    private SupplierEntityMapper supplierEntityMapper;
 
     @Override
-    public Product insert(Product product, String supplierId) {
-        Optional<Supplier> supplier = findSupplierById.find(supplierId);
-
-        if (supplier.isEmpty()) {
-            throw new NotFoundException("Supplier not found");
-        }
-
-        ProductEntity productWithSupplier = new ProductEntity(
-                product.getId(),
-                product.getName(),
-                product.getPrice(),
-                product.isDiscontinued(),
-                supplierEntityMapper.toSupplierEntity(supplier.get())
-        );
-
-
-        ProductEntity productEntity = productRepository.save(productWithSupplier);
+    public Product insert(Product product) {
+        ProductEntity productEntity = productRepository.save(productEntityMapper.toProductEntity(product));
 
         return productEntityMapper.toProduct(productEntity);
     }
