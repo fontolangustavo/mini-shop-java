@@ -1,6 +1,7 @@
 package br.com.iteris.itc.minishop.entrypoint.controller.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
 public class ProductRequest {
     @NotBlank
     private String name;
-    @NotBlank
+    @NotNull
     private BigDecimal price;
     @NotBlank
     private String supplierId;
