@@ -4,7 +4,7 @@ CREATE TABLE orders (
     amount DECIMAL(6, 2),
     created_at DATETIME,
 
-    FOREIGN KEY (customer_id) REFERENCES clients(id)
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
 CREATE TABLE order_items (
