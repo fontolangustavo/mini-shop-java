@@ -4,6 +4,7 @@ import br.com.iteris.itc.minishop.core.domain.Supplier;
 import br.com.iteris.itc.minishop.core.usecase.FindSupplierByIdUseCase;
 import br.com.iteris.itc.minishop.core.usecase.GetAllSupplierUseCase;
 import br.com.iteris.itc.minishop.entrypoint.controller.mapper.SupplierMapper;
+import br.com.iteris.itc.minishop.entrypoint.controller.request.GetAllRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.SupplierResponse;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.SupplierWithProductsResponse;
 import jakarta.validation.Valid;
@@ -27,11 +28,8 @@ public class SupplierController {
     private SupplierMapper supplierMapper;
 
     @GetMapping
-    public ResponseEntity<Page<SupplierResponse>> getAll(
-            @Valid @RequestParam(defaultValue = "1") @Min(1) int page,
-            @Valid @RequestParam(defaultValue = "10") @Max(100) int limit ){
-        var suppliers = getAllSupplierUseCase.getAll(page, limit);
-
+    public ResponseEntity<Page<SupplierResponse>> getAll(@Valid GetAllRequest request){
+        var suppliers = getAllSupplierUseCase.getAll(request.getPage(), request.getLimit());
         var response = suppliers.map(supplierMapper::toSupplierResponse);
 
         return ResponseEntity.ok().body(response);
