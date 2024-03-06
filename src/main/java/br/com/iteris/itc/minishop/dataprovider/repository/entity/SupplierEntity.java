@@ -16,6 +16,7 @@ import java.util.UUID;
 @Table(name = "suppliers")
 public class SupplierEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @NotNull
     private String name;
