@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,18 +38,16 @@ public class FindOrderByIdImplTest {
         UUID orderId = UUID.randomUUID();
         String orderIdString = orderId.toString();
 
-        OrderEntity mockOrder= new OrderEntity(orderId, "Banana", new BigDecimal("4.99"), false,
-                new SupplierEntity());
+        OrderEntity mockOrder= new OrderEntity(orderId, 123.54, ZonedDateTime.now());
 
-        when(mockOrderEntityMapper.toOrder(any(OrderEntity.class))).thenReturn(new Order(orderId, "Banana", new BigDecimal("4.99"), false,
-                new Supplier()));
+        when(mockOrderEntityMapper.toOrder(any(OrderEntity.class))).thenReturn(new Order(orderId, 123.54, ZonedDateTime.now(), null, null));
         when(orderRepository.findById(any(UUID.class))).thenReturn(Optional.of(mockOrder));
 
         Optional<Order> response = findOrderById.find(orderIdString);
 
         assertAll("should return order on success",
                 () -> assertTrue(response.isPresent()),
-                () -> assertEquals(mockOrder.getName(), response.get().getName()),
+                () -> assertEquals(mockOrder.getId(), response.get().getId()),
                 () -> verify(mockOrderEntityMapper, times(1)).toOrder(mockOrder)
         );
     }
