@@ -4,14 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerResponse {
+public class OrderResponse {
     private UUID id;
-    private String name;
-    private String phone;
-    private String email;
+    private double amount;
+    private String createdAt;
+    private CustomerResponse customer;
+    private List<OrderItemWithProductResponse> products;
 }
