@@ -23,16 +23,18 @@ public class SupplierEntityMapper {
 
         BeanUtils.copyProperties(supplierEntity, supplier);
 
-        supplier.setProducts(supplierEntity.getProducts()
-                .stream()
-                .map(productEntity -> new Product(
-                        productEntity.getId(),
-                        productEntity.getName(),
-                        productEntity.getPrice(),
-                        productEntity.isDiscontinued()
-                ))
-                .toList()
-        );
+        if (supplierEntity.getProducts() != null) {
+            supplier.setProducts(supplierEntity.getProducts()
+                    .stream()
+                    .map(productEntity -> new Product(
+                            productEntity.getId(),
+                            productEntity.getName(),
+                            productEntity.getPrice(),
+                            productEntity.isDiscontinued()
+                    ))
+                    .toList()
+            );
+        }
 
         return supplier;
     }
