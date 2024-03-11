@@ -1,0 +1,1 @@
+ALTER TABLE orders ALTER COLUMN created_at datetimeoffset(3) NULL;
