@@ -3,8 +3,10 @@ package br.com.iteris.itc.minishop.entrypoint.controller;
 import br.com.iteris.itc.minishop.core.usecase.FindProductByIdUseCase;
 import br.com.iteris.itc.minishop.core.usecase.GetAllProductUseCase;
 import br.com.iteris.itc.minishop.core.usecase.InsertProductUseCase;
+import br.com.iteris.itc.minishop.core.usecase.UpdateProductUseCase;
 import br.com.iteris.itc.minishop.entrypoint.controller.mapper.ProductMapper;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.ProductRequest;
+import br.com.iteris.itc.minishop.entrypoint.controller.request.UpdateProductRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.ProductResponse;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.ProductWithSupplierResponse;
 import jakarta.validation.Valid;
@@ -29,6 +31,9 @@ public class ProductController {
 
     @Autowired
     private InsertProductUseCase insertProductUseCase;
+
+    @Autowired
+    private UpdateProductUseCase updateProductUseCase;
 
     @Autowired
     private ProductMapper productMapper;
@@ -59,6 +64,17 @@ public class ProductController {
 
         var response = productMapper.toProductResponse(
                 insertProductUseCase.insert(product, productRequest.getSupplierId())
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PutMapping
+    public ResponseEntity<ProductWithSupplierResponse> update(@Valid @RequestBody UpdateProductRequest productRequest) {
+        var product = productMapper.toProductWithId(productRequest);
+
+        var response = productMapper.toProductResponse(
+                updateProductUseCase.update(product, productRequest.getSupplierId())
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
