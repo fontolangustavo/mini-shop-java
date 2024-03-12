@@ -43,6 +43,6 @@ public class StateValidatorImpl implements ConstraintValidator<StateValidator, S
 
     @Override
     public boolean isValid(String state, ConstraintValidatorContext constraintValidatorContext) {
-        return states.contains(state.toUpperCase());
+        return state != null && states.contains(state.toUpperCase());
     }
 }
