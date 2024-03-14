@@ -1,8 +1,6 @@
 package br.com.iteris.itc.minishop.dataprovider.repository.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +15,7 @@ import java.util.UUID;
 @Table(name = "customers")
 public class CustomerEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @NotNull
     private String firstName;
