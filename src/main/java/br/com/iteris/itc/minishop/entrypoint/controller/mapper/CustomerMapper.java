@@ -3,6 +3,7 @@ package br.com.iteris.itc.minishop.entrypoint.controller.mapper;
 import br.com.iteris.itc.minishop.core.domain.Customer;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.StoreCustomerRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.UpdateCustomerRequest;
+import br.com.iteris.itc.minishop.entrypoint.controller.response.CustomerDetailResponse;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.CustomerResponse;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,15 @@ public class CustomerMapper {
                 customer.getFullName(),
                 customer.getPhone(),
                 customer.getEmail()
+        );
+    }
+    public CustomerDetailResponse toCustomerToDetailResponse(Customer customer, double amountSpend) {
+        return new CustomerDetailResponse(
+                customer.getId(),
+                customer.getFullName(),
+                customer.getPhone(),
+                customer.getEmail(),
+                amountSpend
         );
     }
 }
