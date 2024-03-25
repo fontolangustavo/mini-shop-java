@@ -5,9 +5,8 @@ import br.com.iteris.itc.minishop.core.usecase.GetAllProductUseCase;
 import br.com.iteris.itc.minishop.core.usecase.InsertProductUseCase;
 import br.com.iteris.itc.minishop.core.usecase.UpdateProductUseCase;
 import br.com.iteris.itc.minishop.entrypoint.controller.mapper.ProductMapper;
-import br.com.iteris.itc.minishop.entrypoint.controller.request.ProductRequest;
+import br.com.iteris.itc.minishop.entrypoint.controller.request.StoreProductRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.UpdateProductRequest;
-import br.com.iteris.itc.minishop.entrypoint.controller.response.ProductResponse;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.ProductWithSupplierResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -15,7 +14,6 @@ import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,11 +57,11 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductWithSupplierResponse> store(@Valid @RequestBody ProductRequest productRequest) {
-        var product = productMapper.toProduct(productRequest);
+    public ResponseEntity<ProductWithSupplierResponse> store(@Valid @RequestBody StoreProductRequest storeProductRequest) {
+        var product = productMapper.toProduct(storeProductRequest);
 
         var response = productMapper.toProductResponse(
-                insertProductUseCase.insert(product, productRequest.getSupplierId())
+                insertProductUseCase.insert(product, storeProductRequest.getSupplierId())
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
