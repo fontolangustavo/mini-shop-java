@@ -1,7 +1,7 @@
 package br.com.iteris.itc.minishop.entrypoint.controller.mapper;
 
 import br.com.iteris.itc.minishop.core.domain.Product;
-import br.com.iteris.itc.minishop.entrypoint.controller.request.ProductRequest;
+import br.com.iteris.itc.minishop.entrypoint.controller.request.StoreProductRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.UpdateProductRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.ProductWithSupplierResponse;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.SupplierResponse;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductMapper {
 
-    public Product toProduct(ProductRequest productRequest) {
+    public Product toProduct(StoreProductRequest storeProductRequest) {
         return new Product(
-                productRequest.getName(),
-                productRequest.getPrice()
+                storeProductRequest.getName(),
+                storeProductRequest.getPrice()
         );
     }
 
