@@ -14,12 +14,12 @@ public class ProductWithSupplierResponse extends ProductResponse{
     public ProductWithSupplierResponse() {
     }
 
-    public ProductWithSupplierResponse(UUID id, String name, BigDecimal price, boolean isDiscontinued) {
-        super(id, name, price, isDiscontinued);
+    public ProductWithSupplierResponse(UUID id, String name, BigDecimal price, String image, boolean isDiscontinued) {
+        super(id, name, price, image, isDiscontinued);
     }
 
-    public ProductWithSupplierResponse(UUID id, String name, BigDecimal price, boolean isDiscontinued, SupplierResponse supplier) {
-        super(id, name, price, isDiscontinued);
+    public ProductWithSupplierResponse(UUID id, String name, BigDecimal price, String image, boolean isDiscontinued, SupplierResponse supplier) {
+        super(id, name, price, image, isDiscontinued);
         this.supplier = supplier;
     }
 }

@@ -47,8 +47,8 @@ public class GetAllProductImplTest {
         int pageSize = 10;
 
         List<ProductEntity> productEntities = new ArrayList<>();
-        productEntities.add(new ProductEntity(UUID.randomUUID(), "Batata", new BigDecimal("10.0"), false, null));
-        productEntities.add(new ProductEntity(UUID.randomUUID(), "Banana", new BigDecimal("4.99"), false, null));
+        productEntities.add(new ProductEntity(UUID.randomUUID(), "Batata", new BigDecimal("10.0"), "any_image", false, null));
+        productEntities.add(new ProductEntity(UUID.randomUUID(), "Banana", new BigDecimal("4.99"),"any_image",  false, null));
 
         Page<ProductEntity> mockProductEntities = new PageImpl<>(productEntities);
 

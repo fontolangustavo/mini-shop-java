@@ -31,6 +31,7 @@ public class ProductMapper {
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
+                product.getImage(),
                 product.isDiscontinued(),
                 new SupplierResponse(
                         product.getSupplier().getId(),

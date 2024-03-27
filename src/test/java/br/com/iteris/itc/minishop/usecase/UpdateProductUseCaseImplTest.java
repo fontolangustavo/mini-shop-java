@@ -58,7 +58,7 @@ public class UpdateProductUseCaseImplTest {
                 null
         );
 
-        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), false, mockSupplier);
+        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), "any_image", false, mockSupplier);
         ProductEntity mockProductEntity = new ProductEntity();
         BeanUtils.copyProperties(mockProduct, mockProductEntity);
 
@@ -93,7 +93,7 @@ public class UpdateProductUseCaseImplTest {
                 null
         );
 
-        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), false, mockSupplier);
+        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123),"any_image",  false, mockSupplier);
         ProductEntity mockProductEntity = new ProductEntity();
         BeanUtils.copyProperties(mockProduct, mockProductEntity);
 
@@ -109,7 +109,7 @@ public class UpdateProductUseCaseImplTest {
         UUID supplierId = UUID.randomUUID();
         String supplierIdString = supplierId.toString();
 
-        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), false, null);
+        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123),"any_image", false, null);
         ProductEntity mockProductEntity = new ProductEntity();
         BeanUtils.copyProperties(mockProduct, mockProductEntity);
 

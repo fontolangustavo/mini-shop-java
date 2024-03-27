@@ -77,6 +77,43 @@ Passos para executar o docker:
 > - Para verificar status Docker utilize comando `docker ps`;
 > - O comando `docker exec` é capaz de executar programas dentro do nosso contâiner, mais informações [aqui](https://docs.docker.com/engine/reference/commandline/exec/).
 
+# Configuração das Chaves de Acesso da AWS 
+
+Para utilizar os serviços da Amazon Web Services (AWS) em nossa aplicação, é necessário configurar as chaves de acesso adequadas e integrar com o Amazon S3 para leitura e escrita de objetos. Siga os passos abaixo para configurar suas chaves de acesso e integrar com o Amazon S3:
+
+1. **Acessando o Console da AWS:**
+   Acesse o [Console de Gerenciamento da AWS](https://aws.amazon.com/console/) e faça login na sua conta da AWS.
+
+2. **Acessando o Painel de Controle IAM:**
+   No console da AWS, vá para o Painel de Controle do IAM (Identidade e Acesso do AWS). Você pode encontrá-lo na seção "Security, Identity, & Compliance".
+
+3. **Criando um Usuário IAM:**
+   - Selecione "Usuários" no painel de navegação esquerdo e clique em "Adicionar usuário".
+   - Escolha um nome para o usuário, por exemplo, "my-application-user".
+   - Selecione o tipo de acesso. Recomendamos selecionar "Acesso programático" para usar as chaves de acesso para a API da AWS.
+   - Clique em "Próximo: Permissões" e adicione as permissões necessárias para o usuário. Por exemplo, você pode conceder permissões de leitura/gravação no Amazon S3.
+   - Clique em "Próximo: Tags" e adicione tags se desejar. Caso contrário, clique em "Próximo: Revisar" e, em seguida, em "Criar usuário".
+
+4. **Obtendo as Chaves de Acesso:**
+   Após criar o usuário, você será redirecionado para a página de resumo. Aqui, você verá a seção "Chave de acesso". Clique em "Mostrar" ao lado de "Chave de acesso da AWS" e "Chave de acesso secreta da AWS". Anote essas chaves, pois elas serão usadas para configurar a autenticação da AWS na aplicação.
+
+5. **Configurando as Chaves de Acesso no AWS CLI:**
+   Se preferir configurar as chaves de acesso diretamente no AWS CLI, você pode utilizar o comando `aws configure` e inserir as informações solicitadas. Certifique-se de ter o AWS CLI instalado e configurado em sua máquina local. Execute o seguinte comando no terminal:
+
+
+Este comando irá solicitar as seguintes informações:
+- Access Key ID: Insira sua chave de acesso da AWS.
+- Secret Access Key: Insira sua chave secreta da AWS.
+- Default region name: Insira a região padrão do seu bucket do Amazon S3.
+- Default output format: Escolha o formato de saída padrão para as respostas do AWS CLI (opcional).
+
+Siga as instruções na linha de comando para inserir as informações solicitadas.
+
+Se preferir configurar manualmente o arquivo de configuração do AWS CLI, você pode encontrar o arquivo `credentials` no diretório `~/.aws/` (Linux/macOS) ou `%USERPROFILE%/.aws/` (Windows). Edite este arquivo e adicione as chaves de acesso conforme mostrado abaixo:
+
+
+Substitua `sua-chave-de-acesso` e `sua-chave-secreta` pelas chaves de acesso e secreta que você obteve anteriormente.
+
 ## Execução
 
 1. Atualizar as dependências do Maven.

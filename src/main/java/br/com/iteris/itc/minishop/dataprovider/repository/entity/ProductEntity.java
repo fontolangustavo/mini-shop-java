@@ -23,6 +23,7 @@ public class ProductEntity {
     private String name;
     @NotNull
     private BigDecimal price;
+    private String image;
     private boolean isDiscontinued;
     @ManyToOne
     @JoinColumn(name = "supplier_id")

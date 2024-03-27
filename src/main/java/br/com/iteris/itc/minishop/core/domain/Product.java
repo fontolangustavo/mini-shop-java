@@ -7,6 +7,7 @@ public class Product {
   private UUID id;
   private String name;
   private BigDecimal price;
+  private String image;
   private boolean isDiscontinued;
   private Supplier supplier;
 
@@ -25,12 +26,13 @@ public class Product {
     this.isDiscontinued = isDiscontinued;
   }
 
-  public Product(UUID id, String name, BigDecimal price, boolean isDiscontinued, Supplier supplier) {
+  public Product(UUID id, String name, BigDecimal price, String image, boolean isDiscontinued, Supplier supplier) {
     this.id = id;
     this.name = name;
     this.price = price;
     this.isDiscontinued = isDiscontinued;
     this.supplier = supplier;
+    this.image = image;
   }
 
   public UUID getId() {
@@ -57,6 +59,14 @@ public class Product {
     this.price = price;
   }
 
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
   public boolean isDiscontinued() {
     return isDiscontinued;
   }
@@ -79,6 +89,7 @@ public class Product {
             "id=" + id +
             ", name='" + name + '\'' +
             ", price=" + price +
+            ", image=" + image +
             ", isDiscontinued=" + isDiscontinued +
             ", supplier=" + supplier +
             '}';
