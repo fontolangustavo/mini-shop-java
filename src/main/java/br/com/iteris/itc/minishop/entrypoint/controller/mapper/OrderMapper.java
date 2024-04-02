@@ -40,6 +40,7 @@ public class OrderMapper {
                                     orderItem.getProduct().getId(),
                                     orderItem.getProduct().getName(),
                                     orderItem.getProduct().getPrice(),
+                                    orderItem.getProduct().getImage(),
                                     orderItem.getProduct().isDiscontinued()
                             )
                     )).toList();

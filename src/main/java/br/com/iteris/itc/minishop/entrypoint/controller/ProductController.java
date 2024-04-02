@@ -1,9 +1,7 @@
 package br.com.iteris.itc.minishop.entrypoint.controller;
 
-import br.com.iteris.itc.minishop.core.usecase.FindProductByIdUseCase;
-import br.com.iteris.itc.minishop.core.usecase.GetAllProductUseCase;
-import br.com.iteris.itc.minishop.core.usecase.InsertProductUseCase;
-import br.com.iteris.itc.minishop.core.usecase.UpdateProductUseCase;
+import br.com.iteris.itc.minishop.core.dataprovider.UploadFileToS3;
+import br.com.iteris.itc.minishop.core.usecase.*;
 import br.com.iteris.itc.minishop.entrypoint.controller.mapper.ProductMapper;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.StoreProductRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.UpdateProductRequest;
@@ -16,6 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import software.amazon.awssdk.services.backupstorage.model.PutObjectResponse;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -32,6 +33,8 @@ public class ProductController {
 
     @Autowired
     private UpdateProductUseCase updateProductUseCase;
+    @Autowired
+    private UploadFileToS3UseCase uploadFileToS3UseCase;
 
     @Autowired
     private ProductMapper productMapper;
@@ -57,8 +60,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductWithSupplierResponse> store(@Valid @RequestBody StoreProductRequest storeProductRequest) {
+    public ResponseEntity<ProductWithSupplierResponse> store(@Valid @ModelAttribute StoreProductRequest storeProductRequest) throws IOException {
         var product = productMapper.toProduct(storeProductRequest);
+
+        if (!storeProductRequest.getImage().isEmpty()) {
+            String uploadedFile = uploadFileToS3UseCase.uploadFile(storeProductRequest.getImage());
+            product.setImage(uploadedFile);
+        }
 
         var response = productMapper.toProductResponse(
                 insertProductUseCase.insert(product, storeProductRequest.getSupplierId())

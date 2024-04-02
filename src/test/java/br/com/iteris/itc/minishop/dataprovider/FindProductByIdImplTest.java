@@ -37,10 +37,10 @@ public class FindProductByIdImplTest {
         UUID productId = UUID.randomUUID();
         String productIdString = productId.toString();
 
-        ProductEntity mockProduct= new ProductEntity(productId, "Banana", new BigDecimal("4.99"), false,
+        ProductEntity mockProduct= new ProductEntity(productId, "Banana", new BigDecimal("4.99"), "any_image", false,
                 new SupplierEntity());
 
-        when(mockProductEntityMapper.toProduct(any(ProductEntity.class))).thenReturn(new Product(productId, "Banana", new BigDecimal("4.99"), false,
+        when(mockProductEntityMapper.toProduct(any(ProductEntity.class))).thenReturn(new Product(productId, "Banana", new BigDecimal("4.99"), "any_image", false,
                 new Supplier()));
         when(productRepository.findById(any(UUID.class))).thenReturn(Optional.of(mockProduct));
 

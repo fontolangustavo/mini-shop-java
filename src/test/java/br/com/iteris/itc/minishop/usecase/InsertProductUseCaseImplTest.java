@@ -54,7 +54,7 @@ public class InsertProductUseCaseImplTest {
                 null
         );
 
-        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), false, mockSupplier);
+        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), "any_image", false, mockSupplier);
         ProductEntity mockProductEntity = new ProductEntity();
         BeanUtils.copyProperties(mockProduct, mockProductEntity);
 
@@ -88,7 +88,7 @@ public class InsertProductUseCaseImplTest {
                 null
         );
 
-        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), false, mockSupplier);
+        Product mockProduct = new Product(productId, "any_name", new BigDecimal(123), "any_image", false, mockSupplier);
         ProductEntity mockProductEntity = new ProductEntity();
         BeanUtils.copyProperties(mockProduct, mockProductEntity);
 

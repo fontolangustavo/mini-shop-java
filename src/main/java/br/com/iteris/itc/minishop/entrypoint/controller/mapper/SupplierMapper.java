@@ -49,6 +49,7 @@ public class SupplierMapper {
                                 product.getId(),
                                 product.getName(),
                                 product.getPrice(),
+                                product.getImage(),
                                 product.isDiscontinued()
                         )).toList()
         );
