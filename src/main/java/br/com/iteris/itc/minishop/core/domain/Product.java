@@ -19,6 +19,12 @@ public class Product {
     this.price = price;
   }
 
+  public Product(String name, BigDecimal price, Boolean isDiscontinued) {
+    this.name = name;
+    this.price = price;
+    this.isDiscontinued = isDiscontinued;
+  }
+
   public Product(UUID id, String name, BigDecimal price, boolean isDiscontinued) {
     this.id = id;
     this.name = name;

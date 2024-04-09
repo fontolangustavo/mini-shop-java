@@ -19,7 +19,6 @@ public class ProductMapper {
 
     public Product toProductWithId(UpdateProductRequest productRequest) {
         return new Product(
-                productRequest.getId(),
                 productRequest.getName(),
                 productRequest.getPrice(),
                 productRequest.getIsDiscontinued()
