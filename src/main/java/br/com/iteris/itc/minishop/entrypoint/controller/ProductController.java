@@ -1,6 +1,7 @@
 package br.com.iteris.itc.minishop.entrypoint.controller;
 
-import br.com.iteris.itc.minishop.core.dataprovider.UploadFileToS3;
+import br.com.iteris.itc.minishop.core.domain.Product;
+import br.com.iteris.itc.minishop.core.exceptions.ValidationException;
 import br.com.iteris.itc.minishop.core.usecase.*;
 import br.com.iteris.itc.minishop.entrypoint.controller.mapper.ProductMapper;
 import br.com.iteris.itc.minishop.entrypoint.controller.request.StoreProductRequest;
@@ -14,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import software.amazon.awssdk.services.backupstorage.model.PutObjectResponse;
 
 import java.io.IOException;
 
@@ -35,6 +35,8 @@ public class ProductController {
     private UpdateProductUseCase updateProductUseCase;
     @Autowired
     private UploadFileToS3UseCase uploadFileToS3UseCase;
+    @Autowired
+    private DeleteFileFromS3UseCase deleteFileFromS3UseCase;
 
     @Autowired
     private ProductMapper productMapper;
@@ -75,13 +77,42 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PutMapping
-    public ResponseEntity<ProductWithSupplierResponse> update(@Valid @RequestBody UpdateProductRequest productRequest) {
-        var product = productMapper.toProductWithId(productRequest);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductWithSupplierResponse> update(
+            @PathVariable String id,
+            @Valid @ModelAttribute UpdateProductRequest productRequest
+    ) throws IOException {
+        Product product = findProductByIdUseCase.find(id);
 
-        var response = productMapper.toProductResponse(
-                updateProductUseCase.update(product, productRequest.getSupplierId())
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        product.setDiscontinued(productRequest.getIsDiscontinued());
+
+        if (productRequest.getDeleteImage() != null) {
+            if (product.getImage() != null && !product.getImage().equals(productRequest.getDeleteImage())) {
+                throw new ValidationException("Image not found");
+            }
+
+            deleteFileFromS3UseCase.deleteFile(productRequest.getDeleteImage());
+
+            product.setImage(null);
+        }
+
+        if (productRequest.getImage() != null) {
+            if (product.getImage() != null) {
+                deleteFileFromS3UseCase.deleteFile(productRequest.getDeleteImage());
+            }
+
+            String uploadedFile = uploadFileToS3UseCase.uploadFile(productRequest.getImage());
+            product.setImage(uploadedFile);
+        }
+
+        updateProductUseCase.update(
+                product,
+                productRequest.getSupplierId()
         );
+
+        ProductWithSupplierResponse response = productMapper.toProductResponse(product);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
