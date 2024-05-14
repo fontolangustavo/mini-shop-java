@@ -4,59 +4,42 @@ import java.util.UUID;
 
 public class Customer {
     private UUID id;
-    private String firstName;
-    private String lastName;
     private String cpf;
     private String phone;
-    private String email;
+    private User user;
 
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, String cpf, String phone, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Customer(String cpf, String phone) {
         this.cpf = cpf;
         this.phone = phone;
-        this.email = email;
     }
 
-    public Customer(UUID id, String firstName, String lastName, String cpf, String phone, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Customer(String cpf, String phone, User user) {
         this.cpf = cpf;
         this.phone = phone;
-        this.email = email;
+        this.user = user;
+    }
+
+    public Customer(UUID id, String cpf, String phone) {
+        this.id = id;
+        this.cpf = cpf;
+        this.phone = phone;
+    }
+
+    public Customer(UUID id, String cpf, String phone, User user) {
+        this.id = id;
+        this.cpf = cpf;
+        this.phone = phone;
+        this.user = user;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFullName (){
-        return firstName + " " +  lastName;
-    }
+    public void setId(UUID id) { this.id = id;}
 
     public String getCpf() {
         return cpf;
@@ -74,22 +57,21 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", cpf='" + cpf + '\'' +
                 ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

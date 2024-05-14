@@ -11,7 +11,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CustomerResponse {
     private UUID id;
-    private String name;
+    private String cpf;
     private String phone;
-    private String email;
 }

@@ -17,12 +17,15 @@ public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
     private String cpf;
-    @NotNull
-    private String email;
     private String phone;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
+
+    public CustomerEntity(UUID id, String cpf, String phone) {
+        this.id = id;
+        this.cpf = cpf;
+        this.phone = phone;
+    }
 }

@@ -24,7 +24,6 @@ public class OrderMapper {
             CustomerResponse customerResponse = new CustomerResponse();
 
             BeanUtils.copyProperties(order.getCustomer(), customerResponse);
-            customerResponse.setName(order.getCustomer().getFullName());
 
             orderResponse.setCustomer(customerResponse);
         }
