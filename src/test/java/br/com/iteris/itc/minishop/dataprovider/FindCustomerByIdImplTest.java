@@ -38,10 +38,7 @@ public class FindCustomerByIdImplTest {
 
         CustomerEntity mockCustomerEntity = new CustomerEntity(
                 customerId,
-                "any_first_name",
-                "any_last_name",
                 "any_cpf",
-                "any_email",
                 "any_phone"
         );
 

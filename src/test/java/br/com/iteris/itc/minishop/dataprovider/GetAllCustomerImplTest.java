@@ -43,8 +43,8 @@ public class GetAllCustomerImplTest {
         int pageSize = 10;
 
         List<CustomerEntity> customerEntities = new ArrayList<>();
-        customerEntities.add(new CustomerEntity(UUID.randomUUID(), "Joao", "Batata", "1231232321", "joao@gmail.com", "123123213213"));
-        customerEntities.add(new CustomerEntity(UUID.randomUUID(), "Marcos", "Arroz", "54353453553", "arroz@gmail.com", "765757657575"));
+        customerEntities.add(new CustomerEntity(UUID.randomUUID(), "1231232321", "joao@gmail.com"));
+        customerEntities.add(new CustomerEntity(UUID.randomUUID(),  "54353453553", "arroz@gmail.com"));
 
         Page<CustomerEntity> mockCustomerEntities = new PageImpl<>(customerEntities);
 

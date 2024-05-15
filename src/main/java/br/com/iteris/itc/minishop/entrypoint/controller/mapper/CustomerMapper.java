@@ -5,42 +5,35 @@ import br.com.iteris.itc.minishop.entrypoint.controller.request.StoreCustomerReq
 import br.com.iteris.itc.minishop.entrypoint.controller.request.UpdateCustomerRequest;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.CustomerDetailResponse;
 import br.com.iteris.itc.minishop.entrypoint.controller.response.CustomerResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("customer-mapper")
 public class CustomerMapper {
     public Customer toCustomerToStore(StoreCustomerRequest customerRequest) {
         return new Customer(
-                customerRequest.getFirstName(),
-                customerRequest.getLastName(),
                 customerRequest.getCpf(),
-                customerRequest.getPhone(),
-                customerRequest.getEmail()
+                customerRequest.getPhone()
         );
     }
     public Customer toCustomerToUpdate(UpdateCustomerRequest customerRequest) {
         return new Customer(
-                customerRequest.getFirstName(),
-                customerRequest.getLastName(),
                 customerRequest.getCpf(),
-                customerRequest.getPhone(),
-                customerRequest.getEmail()
+                customerRequest.getPhone()
         );
     }
     public CustomerResponse toCustomerResponse(Customer customer) {
         return new CustomerResponse(
                 customer.getId(),
-                customer.getFullName(),
-                customer.getPhone(),
-                customer.getEmail()
+                customer.getCpf(),
+                customer.getPhone()
         );
     }
     public CustomerDetailResponse toCustomerToDetailResponse(Customer customer, double amountSpend) {
         return new CustomerDetailResponse(
                 customer.getId(),
-                customer.getFullName(),
+                customer.getCpf(),
                 customer.getPhone(),
-                customer.getEmail(),
                 amountSpend
         );
     }

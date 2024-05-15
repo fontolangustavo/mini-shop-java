@@ -13,6 +13,7 @@ import br.com.iteris.itc.minishop.entrypoint.controller.response.CustomerRespons
 import br.com.iteris.itc.minishop.entrypoint.controller.response.SupplierResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +24,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customers")
-@RequiredArgsConstructor
 public class CustomerController {
     private final GetAllCustomerUseCase getAllCustomerUseCase;
     private final InsertCustomerUseCase insertCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
     private final FindCustomerByIdUseCase findCustomerByIdUseCase;
     private final FindAmountSpendOnOrderByCustomerIdUseCase findAmountSpendOnOrderByCustomerIdUseCase;
+    @Qualifier("customer.customer-mapper")
     private final CustomerMapper customerMapper;
+
+    public CustomerController(
+            GetAllCustomerUseCase getAllCustomerUseCase,
+            InsertCustomerUseCase insertCustomerUseCase,
+            UpdateCustomerUseCase updateCustomerUseCase,
+            FindCustomerByIdUseCase findCustomerByIdUseCase,
+            FindAmountSpendOnOrderByCustomerIdUseCase findAmountSpendOnOrderByCustomerIdUseCase,
+            CustomerMapper customerMapper
+    ) {
+        this.getAllCustomerUseCase = getAllCustomerUseCase;
+        this.insertCustomerUseCase = insertCustomerUseCase;
+        this.updateCustomerUseCase = updateCustomerUseCase;
+        this.findCustomerByIdUseCase = findCustomerByIdUseCase;
+        this.findAmountSpendOnOrderByCustomerIdUseCase = findAmountSpendOnOrderByCustomerIdUseCase;
+        this.customerMapper = customerMapper;
+    }
 
     @GetMapping
     public ResponseEntity<Page<CustomerResponse>> getAll(@Valid GetAllRequest request){

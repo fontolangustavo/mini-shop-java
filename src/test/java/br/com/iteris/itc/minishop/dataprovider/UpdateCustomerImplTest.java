@@ -35,11 +35,8 @@ public class UpdateCustomerImplTest {
 
         Customer mockCustomer = new Customer(
                 customerId,
-                "any_first_name",
-                "any_last_name",
                 "any_cpf",
-                "any_phone",
-                "any_email"
+                "any_phone"
         );
         CustomerEntity mockCustomerEntity = new CustomerEntity();
         BeanUtils.copyProperties(mockCustomer, mockCustomerEntity);
@@ -52,7 +49,8 @@ public class UpdateCustomerImplTest {
 
         assertAll("should update customer with success",
                 () -> assertNotNull(customer),
-                () -> assertEquals(customer.getFullName(), mockCustomer.getFullName())
+                () -> assertEquals(customer.getPhone(), mockCustomer.getPhone()),
+                () -> assertEquals(customer.getCpf(), mockCustomer.getCpf())
         );
     }
 }
